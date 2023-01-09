@@ -1,10 +1,18 @@
-import './App.css';
-import { Button } from './components/button';
+import {useState, useCallback} from 'react'
 
 function App() {
+  const [count, setCount] = useState(0)
+  const handlerButton = useCallback(() => setCount(prev => prev+1), [])
   return (
     <div className="App">
-      <Button/>
+      <div>
+        <span>{count}</span>
+        <button
+          style={{background: 'black', color: "white", padding: 15}}
+          onClick={handlerButton}>
+            increment
+          </button>
+      </div>
     </div>
   );
 }
