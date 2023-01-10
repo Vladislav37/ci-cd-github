@@ -8,7 +8,7 @@ function App() {
       <div>
         <span>{count}</span>
         <button
-          style={{background: 'black', color: "white", padding: 15}}
+          style={{background: 'blue', color: "white", padding: 15}}
           onClick={handlerButton}>
             increment
           </button>
