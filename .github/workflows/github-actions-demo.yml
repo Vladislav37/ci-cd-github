@@ -1,5 +1,5 @@
 # domain https://reliable-moxie-860fc7.netlify.app/
-name: GitHub Action Master
+name: GitHub Action Demo
 on: workflow_dispatch
   # push:
   #   branches: [master, develop]
