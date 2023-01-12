@@ -1,9 +1,10 @@
-name: GitHub Action Develop
-on:
-  push:
-    branches: [develop]
-  pull_request:
-    branches: [develop]
+# domain https://reliable-moxie-860fc7.netlify.app/
+name: GitHub Action Demo
+on: workflow_dispatch
+  # push:
+  #   branches: [master, develop]
+  # pull_request:
+  #   branches: [master, develop]
 jobs:
   init:
     runs-on: ubuntu-latest
