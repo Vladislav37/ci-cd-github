@@ -22,7 +22,7 @@ jobs:
       #   with:
       #     node-version: ${{ matrix.node-version }}
       - name: Cache deps
-        uses: action/cache@v3
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3 # получили исходный код в проект
       - name: Cache deps
-        uses: action/cache@v3
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
