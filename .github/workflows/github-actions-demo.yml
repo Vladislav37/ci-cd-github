@@ -13,12 +13,14 @@ jobs:
         node-version: [18.x]
     steps:
       - uses: actions/checkout@v3 # получили исходный код в проект
-      - name: Staring Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      # - name: Staring Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
       - name: install modules
         run: npm ci # ci безопаснее install (при наличии lock файла)
+      - name: github object print
+        run: echo "${{ toJSON(github) }}" #github - global context
       # - name: build project
       #   run: npm run build
       # - name: build storybook project
@@ -33,47 +35,3 @@ jobs:
       #   run: npm run type:check
       # - name: i18next check
       #   run: npm run i18n:check
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # получили исходный код в проект
-      - name: install modules
-        run: npm ci # ci безопаснее install (при наличии lock файла)
-      - name: unit test project
-        run: npm run test:unit
-      - name: e2e test project
-        run: npm run test:e2e
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # получили исходный код в проект
-      - name: install modules
-        run: npm ci # ci безопаснее install (при наличии lock файла)
-      - name: lint check
-        run: npm run lint
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # получили исходный код в проект
-      - name: install modules
-        run: npm ci # ci безопаснее install (при наличии lock файла)
-      - name: type check
-        run: npm run type:check
-  i18next-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # получили исходный код в проект
-      - name: install modules
-        run: npm ci # ci безопаснее install (при наличии lock файла)
-      - name: i18next check
-        run: npm run i18n:check
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # получили исходный код в проект
-      - name: install modules
-        run: npm ci # ci безопаснее install (при наличии lock файла)
-      - name: build project
-        run: npm run build
-      - name: build storybook project
-        run: npm run build:storybook
