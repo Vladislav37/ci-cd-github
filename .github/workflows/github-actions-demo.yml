@@ -16,7 +16,7 @@ jobs:
         node-version: [14, 16, 18.x]
         os: [ubuntu-latest, window-latest]
     runs-on: ${{ matrix.os }}
-    constinue-on-error: true
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v3 # получили исходный код в проект
       - name: Staring Node.js ${{ matrix.node-version }} # install node
