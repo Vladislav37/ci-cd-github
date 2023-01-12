@@ -1,64 +1,35 @@
 name: GitHub Action Develop
 on:
-  # push:
-  #   branches: [develop]
-  # pull_request:
-  #   branches: [develop]
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: true
-        type: boolean
-      tags:
-        description: 'Test scenario tags'
-        required: true
-        type: string
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: true
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
 jobs:
-  print-tag:
+  init:
     runs-on: ubuntu-latest
-    if:  ${{ inputs.print_tags }}
+    strategy:
+      matrix:
+        node-version: [18.x]
     steps:
-      - name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ inputs.tags }}
-  # init:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [18.x]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Staring Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #     - name: install modules
-  #       run: npm install
-  #     - name: build project
-  #       run: npm run build
-  #     - name: build storybook project
-  #       run: npm run build:storybook
-  #     - name: unit test project
-  #       run: npm run test:unit
-  #     - name: e2e test project
-  #       run: npm run test:e2e
-  #     - name: lint check
-  #       run: npm run lint
-  #     - name: type check
-  #       run: npm run type:check
-  #     - name: i18next check
-  #       run: npm run i18n:check
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm install
+      - name: build project
+        run: npm run build
+      - name: build storybook project
+        run: npm run build:storybook
+      - name: unit test project
+        run: npm run test:unit
+      - name: e2e test project
+        run: npm run test:e2e
+      - name: lint check
+        run: npm run lint
+      - name: type check
+        run: npm run type:check
+      - name: i18next check
+        run: npm run i18n:check
 
