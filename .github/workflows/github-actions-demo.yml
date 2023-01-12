@@ -1,6 +1,6 @@
 # domain https://reliable-moxie-860fc7.netlify.app/
 name: GitHub Action Demo
-on: # workflow_dispatch
+on: # workflow_dispatch (ручной запуск джобы)
   push:
     branches: [master, develop]
   pull_request:
@@ -12,25 +12,68 @@ jobs:
       matrix:
         node-version: [18.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 # получили исходный код в проект
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: install modules
-        run: npm install
-      - name: build project
-        run: npm run build
-      - name: build storybook project
-        run: npm run build:storybook
+        run: npm ci # ci безопаснее install (при наличии lock файла)
+      # - name: build project
+      #   run: npm run build
+      # - name: build storybook project
+      #   run: npm run build:storybook
+      # - name: unit test project
+      #   run: npm run test:unit
+      # - name: e2e test project
+      #   run: npm run test:e2e
+      # - name: lint check
+      #   run: npm run lint
+      # - name: type check
+      #   run: npm run type:check
+      # - name: i18next check
+      #   run: npm run i18n:check
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # получили исходный код в проект
+      - name: install modules
+        run: npm ci # ci безопаснее install (при наличии lock файла)
       - name: unit test project
         run: npm run test:unit
       - name: e2e test project
         run: npm run test:e2e
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # получили исходный код в проект
+      - name: install modules
+        run: npm ci # ci безопаснее install (при наличии lock файла)
       - name: lint check
         run: npm run lint
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # получили исходный код в проект
+      - name: install modules
+        run: npm ci # ci безопаснее install (при наличии lock файла)
       - name: type check
         run: npm run type:check
+  i18next-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # получили исходный код в проект
+      - name: install modules
+        run: npm ci # ci безопаснее install (при наличии lock файла)
       - name: i18next check
         run: npm run i18n:check
-
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # получили исходный код в проект
+      - name: install modules
+        run: npm ci # ci безопаснее install (при наличии lock файла)
+      - name: build project
+        run: npm run build
+      - name: build storybook project
+        run: npm run build:storybook
