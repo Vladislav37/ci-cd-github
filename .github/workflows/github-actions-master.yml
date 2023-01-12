@@ -1,10 +1,10 @@
 # domain https://reliable-moxie-860fc7.netlify.app/
 name: GitHub Action Master
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: workflow_dispatch
+  # push:
+  #   branches: [master, develop]
+  # pull_request:
+  #   branches: [master, develop]
 jobs:
   init:
     runs-on: ubuntu-latest
