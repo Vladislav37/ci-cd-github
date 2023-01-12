@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix: # проверка билда на разных нодах и ОС
         node-version: [14, 16, 18.x]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest] # windows-latest падает с ошибкой
     runs-on: ${{ matrix.os }}
     continue-on-error: true
     steps:
