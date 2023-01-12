@@ -13,7 +13,7 @@ jobs:
   init:
     strategy:
       matrix: # проверка билда на разных нодах и ОС
-        node-version: [14, 16, 18.x]
+        node-version: [16, 18.x]
         os: [ubuntu-latest, window-latest]
     runs-on: ${{ matrix.os }}
     continue-on-error: true
