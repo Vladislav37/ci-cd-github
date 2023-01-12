@@ -9,6 +9,8 @@ on:
   pull_request:
     branches: [master, develop]
     types: [opened, edited, reopened]
+env:
+  EXAMPLE_VAR: "Example string for env"
 jobs:
   init:
     strategy:
@@ -82,7 +84,7 @@ jobs:
     needs: build
     steps:
       - name: deploy project
-        run: echo "Deploy project..."
+        run: echo "Deploy project with env ${{ env.EXAMPLE_VAR}}"
       - name: download artifact
         uses: actions/download-artifact@v3
         with:
