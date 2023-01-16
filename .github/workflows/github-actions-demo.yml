@@ -3,7 +3,7 @@ name: GitHub Action Demo
 on:
   workflow_dispatch: #(ручной запуск джобы)
   push:
-    branches: [master, develop]
+    branches: [master]
     # path-ignore: # указываем файлы при пуше которых не вызываем джобы
     #   - './gitignore'
   pull_request:
